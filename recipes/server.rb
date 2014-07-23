@@ -20,3 +20,14 @@
 
 # installs the server
 include_recipe 'postgresql::server'
+
+case node['platform_family']
+when 'debian'
+
+  ['', node['postgresql']['version']].each do |dir|
+
+    directory File.join('/var/lib/postgresql/', dir) do
+      mode 0700
+    end
+  end
+end

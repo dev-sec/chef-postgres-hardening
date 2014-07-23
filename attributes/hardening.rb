@@ -21,3 +21,32 @@
 
 # security options
 
+default['postgresql']['config']['logging_collector'] = true
+
+default['postgresql']['config']['log_duration'] = true
+
+default['postgresql']['config']['log_disconnections'] = true
+
+default['postgresql']['config']['log_connections'] = true
+
+default['postgresql']['config']['log_hostname'] = true
+
+default['postgresql']['config']['log_line_prefix'] = '%t %u %d %h'
+
+default['postgresql']['config']['log_directory'] = 'pg_log'
+
+default['postgresql']['config']['password_encryption'] = true
+
+default['postgresql']['config']['ssl'] = true
+
+default['postgresql']['config']['ssl_ciphers'] = 'ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH'
+
+default['postgresql']['pg_hba'] = [
+
+  # violating req to be able to set password
+  { type: 'local', db: 'all', user: 'postgres', addr: nil, method: 'ident' },
+  # all others are md5 now
+  { type: 'local', db: 'all', user: 'all', addr: nil, method: 'md5' },
+  { type: 'host', db: 'all', user: 'all', addr: '127.0.0.1/32', method: 'md5' },
+  { type: 'host', db: 'all', user: 'all', addr: '::1/128', method: 'md5' }
+]
