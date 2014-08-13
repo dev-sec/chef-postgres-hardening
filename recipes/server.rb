@@ -30,4 +30,19 @@ when 'debian'
       mode 0700
     end
   end
+
+  change_notify = node['postgresql']['server']['config_change_notify']
+
+  link "/var/lib/postgresql/#{node['postgresql']['version']}/main/server.crt" do
+    action :delete
+    only_if "ls -l /var/lib/postgresql/#{node['postgresql']['version']}/main/server.crt |grep /etc/ssl/certs/ssl-cert-snakeoil.pem"
+    notifies change_notify, 'service[postgresql]'
+  end
+
+  link "/var/lib/postgresql/#{node['postgresql']['version']}/main/server.key" do
+    action :delete
+    only_if "ls -l /var/lib/postgresql/#{node['postgresql']['version']}/main/server.key |grep /etc/ssl/private/ssl-cert-snakeoil.key"
+    notifies change_notify, 'service[postgresql]'
+  end
+
 end
