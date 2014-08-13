@@ -37,12 +37,7 @@ default['postgresql']['config']['log_directory'] = 'pg_log'
 
 default['postgresql']['config']['password_encryption'] = true
 
-case node['platform_family']
-when 'debian'
-  default['postgresql']['config']['ssl'] = true
-else
-  default['postgresql']['config']['ssl'] = false
-end
+default['postgresql']['config']['ssl'] = false
 
 default['postgresql']['config']['ssl_ciphers'] = 'ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH'
 
