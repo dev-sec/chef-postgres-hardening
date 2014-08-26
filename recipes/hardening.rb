@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-# ensure, that you have postgresql::server in your runlist 
+# ensure, that you have postgresql::server in your runlist
 case node['platform_family']
 when 'debian'
 
