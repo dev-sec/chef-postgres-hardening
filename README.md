@@ -78,16 +78,27 @@ This cookbook will delete the links from `/var/lib/postgresql/#{node['postgresql
 
 ## Tests
 
-    # fast test on one machine
-    kitchen test default-ubuntu-1204
+```bash
+# Install dependencies
+gem install bundler
+bundle install
 
-    # test on all machines
-    kitchen test
+# Do lint checks
+bundle exec rake lint
 
-    # for development
-    kitchen create default-ubuntu-1204
-    kitchen converge default-ubuntu-1204
+# Fetch tests
+bundle exec thor kitchen:fetch-remote-tests
 
+# fast test on one machine
+bundle exec kitchen test default-ubuntu-1204
+
+# test on all machines
+bundle exec kitchen test
+
+# for development
+bundle exec kitchen create default-ubuntu-1204
+bundle exec kitchen converge default-ubuntu-1204
+```
 
 ## Contributors + Kudos
 
