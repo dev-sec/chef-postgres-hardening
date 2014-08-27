@@ -14,7 +14,12 @@ Note: This is currently work in progress and not tested on all supported platfor
 
 This cookbook is optimized to work with [os-hardening](https://github.com/TelekomLabs/postgres-os-hardening) and [ssh-hardening](https://github.com/TelekomLabs/chef-ssh-hardening). It will play well without, but you need to ensure all preconditions like `apt-get update` or `yum update` are met.
 
-add `recipe[postgres-hardening::server]` to your runlist and customize security option attributes
+add the following to your runlist and customize security option attributes
+
+```bash
+  "recipe[postgresql::server]",
+  "recipe[postgres-hardening]"
+```
 
 ### Enable SSL
 

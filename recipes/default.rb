@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-include_recipe('postgres-hardening::server')
+include_recipe('postgres-hardening::hardening')

@@ -1,7 +1,7 @@
 # encoding: utf-8
 #
 # Cookbook Name: postgres-hardening
-# Recipe: server.rb
+# Recipe: hardening.rb
 #
 # Copyright 2014, Deutsche Telekom AG
 #
@@ -18,9 +18,7 @@
 # limitations under the License.
 #
 
-# installs the server
-include_recipe 'postgresql::server'
-
+# ensure, that you have postgresql::server in your runlist
 case node['platform_family']
 when 'debian'
 
