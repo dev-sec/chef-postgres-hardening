@@ -5,3 +5,4 @@ Berksfile.lock
 .kitchen.local.yml
 shared_test_repo/
 test/integration
+coverage/**/*

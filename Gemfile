@@ -3,12 +3,16 @@
 source 'https://rubygems.org'
 
 gem 'berkshelf',  '~> 3.0'
-gem 'chef',       '~> 11.12'
-gem 'chefspec',   '~> 3.4'
-gem 'foodcritic', '~> 3.0'
-gem 'thor-foodcritic'
-gem 'rake'
-gem 'rubocop',    '~> 0.23'
+gem 'chef',       '~> 11.16'
+
+group :test do
+  gem 'rake'
+  gem 'chefspec', '~> 4.1'
+  gem 'foodcritic', '~> 4.0'
+  gem 'thor-foodcritic'
+  gem 'rubocop',    '~> 0.27'
+  gem 'coveralls',  require: false
+end
 
 group :development do
   gem 'guard'
@@ -19,7 +23,7 @@ group :development do
 end
 
 group :integration do
-  gem 'test-kitchen', '~> 1.0'
+  gem 'test-kitchen', '~> 1.2'
   gem 'kitchen-vagrant'
   gem 'kitchen-sharedtests', '~> 0.2.0'
 end
