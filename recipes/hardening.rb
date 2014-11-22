@@ -25,7 +25,7 @@ when 'debian'
   ['', node['postgresql']['version']].each do |dir|
 
     directory File.join('/var/lib/postgresql/', dir) do
-      mode 0700
+      mode '0700'
     end
   end
 
