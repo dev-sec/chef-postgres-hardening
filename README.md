@@ -26,6 +26,28 @@ add the following to your runlist and customize security option attributes
   "recipe[postgres-hardening]"
 ```
 
+You should also use the official postgres packages, because those offer the latest fixes. Enable the suitable option for the [postgres cookbook](https://github.com/hw-cookbooks/postgresql).
+
+```bash
+"postgresql": {
+
+   # debian, ubuntu
+   "enable_pgdg_apt": true
+
+   # rhel
+   "enable_pgdg_yum": true
+
+}
+```
+
+The hardening cookbook is only optimized for Postgresql 9.3. This can be activated for [postgres cookbook](https://github.com/hw-cookbooks/postgresql).
+
+```bash
+"postgresql": {
+   version: "9.3"
+}
+```
+
 ### Enable SSL
 
 Please read http://www.postgresql.org/docs/9.1/static/ssl-tcp.html first. 
