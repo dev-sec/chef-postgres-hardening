@@ -25,6 +25,7 @@ describe 'postgres-hardening::hardening' do
 
         before do
           @postgres_version = platform[:postgres_version]
+          stub_command("ls /var/lib/postgresql/#{@postgres_version}/main/recovery.conf").and_return(true)
         end
 
         it 'creates necessary directories with correct mode' do
