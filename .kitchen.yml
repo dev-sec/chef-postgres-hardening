@@ -24,11 +24,11 @@ platforms:
 - name: oracle-6.4
   driver_config:
     box: oracle-6.4
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
+    box_url: https://vagrantcloud.com/box-cutter/boxes/oel64/versions/1.0.8/providers/virtualbox.box
 - name: oracle-6.5
   driver_config:
     box: oracle-6.5
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
+    box_url: https://vagrantcloud.com/box-cutter/boxes/oel65/versions/1.0.8/providers/virtualbox.box
 - name: debian-6
   driver_config:
     box: debian-6
@@ -37,7 +37,38 @@ platforms:
   driver_config:
     box: debian-7
     box_url: https://s3.eu-central-1.amazonaws.com/ffuenf-vagrantboxes/debian/debian-7.7.0-amd64_virtualbox.box
+
 suites:
 - name: default
   run_list:
-  - role[postgresql]
+    - recipe[chef-solo-search]
+    - recipe[apt]
+    - recipe[postgresql::server]
+    - recipe[postgres-hardening]
+  excludes: ["centos-6.4", "centos-6.5", "oracle-6.4", "oracle-6.5"]
+  attributes: {
+    postgresql: {
+      enable_pgdg_apt: true,
+      version: "9.3",
+      password: {
+        postgres: "iloverandompasswordsbutthiswilldo"
+      }
+    }
+  }
+- name: default-rhel
+  run_list:
+    - recipe[chef-solo-search]
+    - recipe[apt]
+    - recipe[postgresql::server]
+    - recipe[postgres-hardening]
+  excludes: ["debian-6", "debian-7", "ubuntu-12.04", "ubuntu-14.04"]
+  attributes: {
+    postgresql: {
+      enable_pgdg_yum: true,
+      version: "9.3",
+      password: {
+        postgres: "iloverandompasswordsbutthiswilldo"
+      }
+    }
+  }
+

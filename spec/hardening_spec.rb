@@ -7,10 +7,10 @@ describe 'postgres-hardening::hardening' do
   context 'with platform_family debian' do
 
     platforms = [
-      { os_name: 'ubuntu', os_version: '12.04', postgres_version: '9.1' },
+      { os_name: 'ubuntu', os_version: '12.04', postgres_version: '9.3' },
       { os_name: 'ubuntu', os_version: '14.04', postgres_version: '9.3' },
-      { os_name: 'debian', os_version: '6.0.5', postgres_version: '8.4' },
-      { os_name: 'debian', os_version: '7.5', postgres_version: '9.1' }
+      { os_name: 'debian', os_version: '6.0.5', postgres_version: '9.3' },
+      { os_name: 'debian', os_version: '7.5', postgres_version: '9.3' }
     ]
 
     platforms.each do |platform|
@@ -20,11 +20,14 @@ describe 'postgres-hardening::hardening' do
         let(:chef_run) do
           ChefSpec::ServerRunner.new(
             platform: platform[:os_name], version: platform[:os_version]
-          ).converge('postgresql::server', 'postgres-hardening::hardening')
+          ) do |node|
+            node.set['postgresql']['version'] = '9.3'
+          end.converge('postgresql::server', 'postgres-hardening::hardening')
         end
 
         before do
           @postgres_version = platform[:postgres_version]
+          stub_command("ls /var/lib/postgresql/#{@postgres_version}/main/recovery.conf").and_return(true)
         end
 
         it 'creates necessary directories with correct mode' do
