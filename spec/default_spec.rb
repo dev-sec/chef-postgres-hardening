@@ -4,9 +4,11 @@ require 'spec_helper'
 
 describe 'postgres-hardening::default' do
 
-  let(:chef_run) { ChefSpec::SoloRunner.new do |node|
-    node.set['postgresql']['version'] = '9.3'
-  end.converge(described_recipe) }
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new do |node|
+      node.set['postgresql']['version'] = '9.3'
+    end.converge(described_recipe)
+  end
 
   before do
     @postgres_version = '9.3'
