@@ -35,11 +35,11 @@ describe 'postgres-hardening::hardening' do
           stub_command("ls -l /var/lib/postgresql/#{@postgres_version}/main/server.crt |grep /etc/ssl/certs/ssl-cert-snakeoil.pem").and_return(true)
           stub_command("ls -l /var/lib/postgresql/#{@postgres_version}/main/server.key |grep /etc/ssl/private/ssl-cert-snakeoil.key").and_return(true)
 
-          expect(chef_run).to create_directory('/var/lib/postgresql/')
-            .with(mode: '0700')
+          expect(chef_run).to create_directory('/var/lib/postgresql/').
+            with(mode: '0700')
 
-          expect(chef_run).to create_directory("/var/lib/postgresql/#{@postgres_version}")
-            .with(mode: '0700')
+          expect(chef_run).to create_directory("/var/lib/postgresql/#{@postgres_version}").
+            with(mode: '0700')
 
         end
 
