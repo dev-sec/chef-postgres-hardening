@@ -10,20 +10,15 @@ require 'chef/cookbook/metadata'
 
 # Rubocop before rspec so we don't lint vendored cookbooks
 desc 'Run all tests except Kitchen (default task)'
-task integration: %w(rubocop foodcritic spec)
-task default: :integration
-
-# Lint the cookbook
-desc 'Run linters'
-task lint: [:rubocop, :foodcritic]
+task default: [:lint, :spec]
 
 # Lint the cookbook
 desc 'Run all linters: rubocop and foodcritic'
-task run_all_linters: [:rubocop, :foodcritic]
+task lint: [:rubocop, :foodcritic]
 
 # Run the whole shebang
 desc 'Run all tests'
-task test: [:lint, :integration]
+task test: [:lint, :integration, :spec]
 
 # RSpec
 desc 'Run chefspec tests'
@@ -52,15 +47,21 @@ task :rubocop do
   RuboCop::RakeTask.new
 end
 
-begin
-  require 'kitchen/rake_tasks'
-  Kitchen::RakeTasks.new
+# Automatically generate a changelog for this project. Only loaded if
+# the necessary gem is installed.
 
-  desc 'Alias for kitchen:all'
-  task acceptance: 'kitchen:all'
+desc 'Generate the changelog'
+task :changelog do
+  version = File.read('metadata.rb')[/^version '(.*)'$/, 1]
+  system "github_changelog_generator -u dev-sec -p chef-apache-hardening --future-release #{version}"
+end
 
-rescue LoadError
-  puts '>>>>> Kitchen gem not loaded, omitting tasks' unless ENV['CI']
+namespace :test do
+  task :integration do
+    concurrency = ENV['CONCURRENCY'] || 1
+    os = ENV['OS'] || ''
+    sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{os}")
+  end
 end
 
 # Automatically generate a changelog for this project. Only loaded if
