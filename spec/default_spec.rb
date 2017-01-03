@@ -18,7 +18,6 @@
 require 'spec_helper'
 
 describe 'postgres-hardening::default' do
-
   let(:chef_run) do
     ChefSpec::SoloRunner.new do |node|
       node.set['postgresql']['version'] = '9.3'
@@ -35,5 +34,4 @@ describe 'postgres-hardening::default' do
   it 'includes postgres-hardening::hardening recipe' do
     expect(chef_run).to include_recipe('postgres-hardening::hardening')
   end
-
 end
