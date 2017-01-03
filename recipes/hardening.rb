@@ -21,9 +21,7 @@
 # ensure, that you have postgresql::server in your runlist
 case node['platform_family']
 when 'debian'
-
   ['', node['postgresql']['version']].each do |dir|
-
     directory File.join('/var/lib/postgresql/', dir) do
       mode '0700'
     end
@@ -42,5 +40,4 @@ when 'debian'
     only_if "ls -l /var/lib/postgresql/#{node['postgresql']['version']}/main/server.key |grep /etc/ssl/private/ssl-cert-snakeoil.key"
     notifies change_notify, 'service[postgresql]'
   end
-
 end
