@@ -4,6 +4,5 @@ rvm:
 - 2.1.3
 gemfile:
 - Gemfile
-- gemfile.chef-11
 language: ruby
 bundler_args: "--without development integration openstack"
