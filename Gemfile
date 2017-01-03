@@ -13,7 +13,7 @@ end
 
 group :test do
   gem 'bundler', '~> 1.5'
-  gem 'chefspec',   '~> 4.2.0'
+  gem 'chefspec',   '~> 5.3.0'
   gem 'coveralls',  require: false
   gem 'foodcritic', '~> 6.0'
   gem 'minitest', '~> 5.5'
