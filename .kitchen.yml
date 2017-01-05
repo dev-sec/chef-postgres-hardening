@@ -27,9 +27,6 @@ platforms:
     intermediate_instructions:
     - RUN /usr/bin/apt-get update
     pid_one_command: /bin/systemd
-- name: centos-6.6
-  driver:
-    image: centos:6.6
 - name: centos-6.7
   driver:
     image: centos:6.7
@@ -39,9 +36,6 @@ platforms:
   driver:
     image: centos:7
     pid_one_command: /usr/lib/systemd/systemd
-- name: oracle-6.6
-  driver:
-    image: oraclelinux:6.6
 - name: oracle-6.7
   driver:
     image: oraclelinux:6.7
@@ -77,11 +71,44 @@ platforms:
     - RUN dnf install -y yum
 
 suites:
-- name: default
+- name: default-apt
   run_list:
   - recipe[apt]
   - recipe[postgresql::server]
   - recipe[postgres-hardening]
+  excludes:
+  - centos-6.8
+  - centos-7
+  - fedora-23
+  - fedora-24
+  - oracle-6.7
+  - oracle-7.1
+  attributes:
+    postgresql:
+      enable_pgdg_apt: true
+      version: '9.4'
+      dir: '/etc/postgresql/9.4/main'
+      password:
+        postgres: 'iloverandompasswordsbutthiswilldo'
+      server:
+        service_name: 'postgresql'
+        packages: [ 'postgresql-9.4' ]
+      client:
+        packages: [ 'postgresql-client-9.4', 'libpq-dev' ]
+  verifier:
+    inspec_tests:
+      - https://github.com/dev-sec/postgres-baseline
+- name: default-yum
+  run_list:
+  - recipe[apt]
+  - recipe[postgresql::server]
+  - recipe[postgres-hardening]
+  excludes:
+  - ubuntu-12.04
+  - ubuntu-14.04
+  - ubuntu-16.04
+  - debian-7
+  - debian-8
   attributes:
     postgresql:
       enable_pgdg_yum: true
