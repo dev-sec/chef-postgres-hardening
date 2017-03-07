@@ -73,7 +73,6 @@ platforms:
 suites:
 - name: default-apt
   run_list:
-  #- recipe[apt]
   - recipe[postgresql::server]
   - recipe[postgres-hardening]
   excludes:
@@ -99,9 +98,39 @@ suites:
   verifier:
     inspec_tests:
       - https://github.com/dev-sec/postgres-baseline
+- name: default-apt_9.1
+  run_list:
+  - recipe[postgresql::server]
+  - recipe[postgres-hardening]
+  excludes:
+  - ubuntu-12.04
+  - ubuntu-14.04
+  - ubuntu-16.04
+  - debian-8
+  - centos-6.8
+  - centos-7
+  - centos-6.7
+  - fedora-23
+  - fedora-24
+  - oracle-6.7
+  - oracle-7.1
+  attributes:
+    postgresql:
+      enable_pgdg_apt: true
+      version: '9.1'
+      dir: '/etc/postgresql/9.1/main'
+      password:
+        postgres: 'iloverandompasswordsbutthiswilldo'
+      server:
+        service_name: 'postgresql'
+        packages: [ 'postgresql-9.1' ]
+      client:
+        packages: [ 'postgresql-client-9.1', 'libpq-dev' ]
+  verifier:
+    inspec_tests:
+      - https://github.com/dev-sec/postgres-baseline
 - name: default-yum
   run_list:
-  #- recipe[apt]
   - recipe[postgresql::server]
   - recipe[postgres-hardening]
   excludes:
