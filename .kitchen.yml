@@ -73,12 +73,13 @@ platforms:
 suites:
 - name: default-apt
   run_list:
-  - recipe[apt]
+  #- recipe[apt]
   - recipe[postgresql::server]
   - recipe[postgres-hardening]
   excludes:
   - centos-6.8
   - centos-7
+  - centos-6.7
   - fedora-23
   - fedora-24
   - oracle-6.7
@@ -100,7 +101,7 @@ suites:
       - https://github.com/dev-sec/postgres-baseline
 - name: default-yum
   run_list:
-  - recipe[apt]
+  #- recipe[apt]
   - recipe[postgresql::server]
   - recipe[postgres-hardening]
   excludes:
