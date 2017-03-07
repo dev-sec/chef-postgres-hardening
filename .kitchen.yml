@@ -39,9 +39,9 @@ platforms:
 - name: oracle-6.7
   driver:
     image: oraclelinux:6.7
-- name: oracle-7.1
+- name: oracle-7
   driver:
-    image: oraclelinux:7.1
+    image: oraclelinux:7
     pid_one_command: /usr/lib/systemd/systemd
 - name: debian-7
   driver:
@@ -82,7 +82,8 @@ suites:
   - fedora-23
   - fedora-24
   - oracle-6.7
-  - oracle-7.1
+  - oracle-7
+  - debian-7
   attributes:
     postgresql:
       enable_pgdg_apt: true
@@ -98,7 +99,7 @@ suites:
   verifier:
     inspec_tests:
       - https://github.com/dev-sec/postgres-baseline
-- name: default-apt_9.1
+- name: default-apt91
   run_list:
   - recipe[postgresql::server]
   - recipe[postgres-hardening]
@@ -113,7 +114,7 @@ suites:
   - fedora-23
   - fedora-24
   - oracle-6.7
-  - oracle-7.1
+  - oracle-7
   attributes:
     postgresql:
       enable_pgdg_apt: true

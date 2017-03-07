@@ -21,16 +21,39 @@ matrix:
   - rvm: 2.3.3
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
-    env: SUITE=test:integration OS='centos'
+    env: SUITE=test:integration OS='centos-6.7'
   - rvm: 2.3.3
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
-    env: SUITE=test:integration OS='oracle'
+    env: SUITE=test:integration OS='centos-7'
   - rvm: 2.3.3
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
-    env: SUITE=test:integration OS='ubuntu'
+    env: SUITE=test:integration OS='oracle-6.7'
   - rvm: 2.3.3
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
-    env: SUITE=test:integration OS='debian'
+    env: SUITE=test:integration OS='oracle-7'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='ubuntu-12.04'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='ubuntu-14.04'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='ubuntu-16.04'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='debian-7'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='debian-8'
+  allow-failures:
+  - env: SUITE=test:integration OS='fedora-24'
+  - env: SUITE=test:integration OS='fedora-23'

@@ -25,6 +25,9 @@ when 'debian'
     directory File.join('/var/lib/postgresql/', dir) do
       mode '0700'
     end
+    directory File.join('/etc/postgresql/', node['postgresql']['version'], 'main') do
+      mode '0700'
+    end
   end
 
   change_notify = node['postgresql']['server']['config_change_notify']
