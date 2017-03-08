@@ -1,5 +1,19 @@
 # Change Log
 
+## [v2.0.0](https://github.com/dev-sec/chef-postgres-hardening/tree/v2.0.0) (2017-03-08)
+[Full Changelog](https://github.com/dev-sec/chef-postgres-hardening/compare/v2.0.0...v2.0.0)
+
+**Closed issues:**
+
+- Support for postgresql cookbook 6.0.0 [\#24](https://github.com/dev-sec/chef-postgres-hardening/issues/24)
+
+## [v2.0.0](https://github.com/dev-sec/chef-postgres-hardening/tree/v2.0.0) (2017-03-08)
+[Full Changelog](https://github.com/dev-sec/chef-postgres-hardening/compare/v1.1.0...v2.0.0)
+
+**Merged pull requests:**
+
+- Use new InSpec Baseline [\#25](https://github.com/dev-sec/chef-postgres-hardening/pull/25) ([atomic111](https://github.com/atomic111))
+
 ## [v1.1.0](https://github.com/dev-sec/chef-postgres-hardening/tree/v1.1.0) (2017-01-03)
 [Full Changelog](https://github.com/dev-sec/chef-postgres-hardening/compare/v1.0.0...v1.1.0)
 
