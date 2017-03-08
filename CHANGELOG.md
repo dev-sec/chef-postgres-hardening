@@ -9,6 +9,7 @@
 
 **Merged pull requests:**
 
+- 1.1.0, add changelog, update gems [\#22](https://github.com/dev-sec/chef-postgres-hardening/pull/22) ([chris-rock](https://github.com/chris-rock))
 - upgrade to Berkshelf 4 [\#21](https://github.com/dev-sec/chef-postgres-hardening/pull/21) ([chris-rock](https://github.com/chris-rock))
 - update common kitchen.yml platforms [\#20](https://github.com/dev-sec/chef-postgres-hardening/pull/20) ([chris-rock](https://github.com/chris-rock))
 - add copyright header [\#19](https://github.com/dev-sec/chef-postgres-hardening/pull/19) ([chris-rock](https://github.com/chris-rock))

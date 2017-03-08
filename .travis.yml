@@ -1,7 +1,56 @@
 ---
-rvm:
-- 2.3.3
-gemfile:
-- Gemfile
+sudo: required
 language: ruby
-bundler_args: "--without development integration openstack"
+cache: bundler
+dist: trusty
+
+services:
+- docker
+
+before_install:
+- gem --version
+- bundle version
+
+matrix:
+  include:
+  # verify lint and unit
+  - rvm: 2.3.3
+    gemfile: Gemfile
+    bundler_args: "--without integration guard tools"
+  # integration tests
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='centos-67'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='centos-7'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='oracle-67'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='oracle-7'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='ubuntu-1204'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='ubuntu-1404'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='ubuntu-1604'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='debian-7'
+  - rvm: 2.3.3
+    bundler_args: "--without guard tools"
+    script: bundle exec rake $SUITE
+    env: SUITE=test:integration OS='debian-8'
