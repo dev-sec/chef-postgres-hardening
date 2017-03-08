@@ -49,6 +49,8 @@ end
 
 # Automatically generate a changelog for this project. Only loaded if
 # the necessary gem is installed.
+# Automatically generate a changelog for this project. Only loaded if
+# the necessary gem is installed.
 begin
   # read version from metadata
   metadata = Chef::Cookbook::Metadata.new
@@ -58,6 +60,8 @@ begin
   require 'github_changelog_generator/task'
   GitHubChangelogGenerator::RakeTask.new :changelog do |config|
     config.future_release = "v#{metadata.version}"
+    config.user = 'dev-sec'
+    config.project = 'chef-postgres-hardening'
   end
 rescue LoadError
   puts '>>>>> GitHub Changelog Generator not loaded, omitting tasks'
