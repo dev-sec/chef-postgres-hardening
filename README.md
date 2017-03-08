@@ -14,7 +14,16 @@ Note: This is currently work in progress and not tested on all supported platfor
 
 ## Requirements
 
-* Chef
+* Chef >= 12.5.1
+
+
+### Platform
+
+- Debian 7, 8
+- Ubuntu 12.04, 14.04, 16.04
+- RHEL 6, 7
+- CentOS 6, 7
+- Oracle Linux 6, 7
 
 ## Usage
 
@@ -27,7 +36,7 @@ add the following to your runlist and customize security option attributes
   "recipe[postgres-hardening]"
 ```
 
-You should also use the official postgres packages, because those offer the latest fixes. Enable the suitable option for the [postgres cookbook](https://github.com/hw-cookbooks/postgresql).
+You should also use the official postgres packages, because those offer the latest fixes. Enable the suitable option for the [postgres cookbook](https://github.com/sous-chefs/postgresql).
 
 ```bash
 "postgresql": {
@@ -41,11 +50,11 @@ You should also use the official postgres packages, because those offer the late
 }
 ```
 
-The hardening cookbook is only optimized for Postgresql 9.3. This can be activated for [postgres cookbook](https://github.com/hw-cookbooks/postgresql).
+The hardening cookbook is only optimized for Postgresql 9.4. This can be activated for [postgres cookbook](https://github.com/sous-chefs/postgresql.
 
 ```bash
 "postgresql": {
-   version: "9.3"
+   version: "9.4"
 }
 ```
 
@@ -120,22 +129,22 @@ bundle install
 bundle exec rake lint
 
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
+bundle exec kitchen test default-apt-ubuntu-1604
 
 # test on all machines
 bundle exec kitchen test
 
 # for development
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
+bundle exec kitchen create default-apt-ubuntu-1604
+bundle exec kitchen converge default-apt-ubuntu-1604
 ```
 
 ## Contributors + Kudos
 
-* Edmund Haselwanter
-* Dominik Richter
-* Christoph Hartmann
-* Patrick Meier
+* Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
+* Dominik Richter [arlimus](https://github.com/arlimus)
+* Christoph Hartmann [chris-rock](https://github.com/chris-rock)
+* Patrick Muench [atomic111](https://github.com/atomic111)
 
 
 ## License and Author

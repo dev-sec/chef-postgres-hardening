@@ -54,14 +54,3 @@ matrix:
     bundler_args: "--without guard tools"
     script: bundle exec rake $SUITE
     env: SUITE=test:integration OS='debian-8'
-  - rvm: 2.3.3
-    bundler_args: "--without guard tools"
-    script: bundle exec rake $SUITE
-    env: SUITE=test:integration OS='fedora-23'
-  - rvm: 2.3.3
-    bundler_args: "--without guard tools"
-    script: bundle exec rake $SUITE
-    env: SUITE=test:integration OS='fedora-24'
-  allow-failures:
-  - env: SUITE=test:integration OS='fedora-24'
-  - env: SUITE=test:integration OS='fedora-23'
