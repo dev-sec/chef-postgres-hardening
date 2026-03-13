@@ -29,5 +29,5 @@ group :integration do
 end
 
 group :tools do
-  gem 'github_changelog_generator', '~> 1.16.0'
+  gem 'github_changelog_generator', '~> 1.17.0'
 end
